@@ -1,3 +1,3 @@
 - 运行
-npm i
-node index1
+- npm i
+- node index1
