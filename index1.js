@@ -6,8 +6,8 @@ var request = require('request');
 var iconv=require('iconv-lite');//iconv-lite模块用于解码
 //设置循环
 var i = 0;
-//初始url 
-var url = "http://xiaohua.zol.com.cn/detail60/59411.html"; 
+//初始url /detail22/21357.html
+var url = "http://xiaohua.zol.com.cn/detail21/20751.html"; 
 function startSpider(x) {
 	console.log('向目标站点发送请求');
     //采用http模块向服务器发起一次get请求      
@@ -39,7 +39,7 @@ function startSpider(x) {
             //下一篇文章的url
             var nextLink="http://xiaohua.zol.com.cn" + $(".article .article-text a").attr('href');
             //这是亮点之一，通过控制I,可以控制爬取多少篇文章.
-            if (i <= 30) {                
+            if (i <= 200) {                
                 setTimeout(function(){
                     startSpider(nextLink);
                 },300)
