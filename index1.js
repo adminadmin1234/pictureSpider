@@ -39,7 +39,7 @@ function startSpider(x) {
             //下一篇文章的url
             var nextLink="http://xiaohua.zol.com.cn" + $(".article .article-text a").attr('href');
             //这是亮点之一，通过控制I,可以控制爬取多少篇文章.
-            if (i <= 30) {                
+            if (i <= 2) {                
                 setTimeout(function(){
                     startSpider(nextLink);
                 },300)
