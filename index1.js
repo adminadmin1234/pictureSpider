@@ -6,8 +6,8 @@ var request = require('request');
 var iconv=require('iconv-lite');//iconv-lite模块用于解码
 //设置循环
 var i = 0;
-//初始url /detail22/21357.html
-var url = "http://xiaohua.zol.com.cn/detail21/20751.html"; 
+//初始url /detail22/21960.html
+var url = "http://xiaohua.zol.com.cn/detail21/21357.html"; 
 function startSpider(x) {
 	console.log('向目标站点发送请求');
     //采用http模块向服务器发起一次get请求      
