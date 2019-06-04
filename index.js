@@ -1,9 +1,9 @@
-//var http = require('https');
-var http = require('http');
-var fs = require('fs');
-var cheerio = require('cheerio');
-var request = require('request');
-//设置循环
+//var http = require('https'); //如果爬虫目标站点是https开头
+var http = require('http'); //如果爬虫目标站点是http开头
+var fs = require('fs'); // 引入文件组件
+var cheerio = require('cheerio'); // 类似jquery的组件方便操作dom
+var request = require('request'); // 网络请求组件
+//设置循环，可以控制爬去页面的数量
 var i = 0;
 //初始url 
 var url = "http://m.juyouqu.com/qu/3187982"; 
@@ -12,24 +12,20 @@ function startSpider(x) {
     //采用http模块向服务器发起一次get请求      
     http.get(x, function (res) {     
         var html = '';        //用来存储请求网页的整个html内容
-        var titles = [];        
         res.setEncoding('utf-8'); //防止中文乱码
         //监听data事件，每次取一块数据
         res.on('data', function (chunk) {   
             html += chunk;
-            //console.log(chunk)
         });
         //监听end事件，如果整个网页内容的html都获取完毕，就执行回调函数
         res.on('end', function () {
-
          var $ = cheerio.load(html); //采用cheerio模块解析html
-         //console.log('html',html)
          var news_item = {
           	//获取文章的标题
-            title: $('.item-title').text().trim(),
-            imgSrc: $('.post-container img').attr('src'),
-            link: $(".button").attr('href'),//
-        	//i是用来判断获取了多少篇文章
+            title: $('.item-title').text().trim(), // dom节点以被爬的网页为准
+            imgSrc: $('.post-container img').attr('src'), // dom节点以被爬的网页为准
+            link: $(".button").attr('href'),// dom节点以被爬的网页为准
+        	//i是用来判断获取了多少个页面
             i: i = i + 1,     
             };
 	    console.log(news_item);

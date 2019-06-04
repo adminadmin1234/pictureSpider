@@ -1,12 +1,12 @@
-//var http = require('https');
-var http = require('http');
+//var http = require('https'); //如果爬虫目标站点是https开头
+var http = require('http'); //如果爬虫目标站点是http开头
 var fs = require('fs');
 var cheerio = require('cheerio');
 var request = require('request');
-var iconv=require('iconv-lite');//iconv-lite模块用于解码
+var iconv=require('iconv-lite'); //iconv-lite模块用于解码,苦于nodejs不支持gbk解析
 //设置循环
 var i = 0;
-var url = "http://xiaohua.zol.com.cn/detail24/23169.html"; 
+var url = "http://xiaohua.zol.com.cn/detail24/23169.html"; // 这个站点是gbk格式的
 function startSpider(x) {
 	console.log('向目标站点发送请求');
     //采用http模块向服务器发起一次get请求      
@@ -22,13 +22,13 @@ function startSpider(x) {
         res.on('end', function () {
             //数据获取完毕后，开始解码
             var bufferHtmlData=Buffer.concat(htmlData,htmlDataLength);
-            var decodeHtmlData=iconv.decode(bufferHtmlData,'gbk');
+            var decodeHtmlData=iconv.decode(bufferHtmlData,'gbk'); // 这个站点是gbk格式的
             var $=cheerio.load(decodeHtmlData,{decodeEntities: false});
             var news_item = {
                 //获取文章的标题
                 title: $('.article .article-title').text().trim(),
                 imgSrc: 'http:' + $('.article .article-text img').attr('src'),
-                link: $(".article .article-text a").attr('href'),//
+                link: $(".article .article-text a").attr('href'),
                 //i是用来判断获取了多少篇文章
                 i: i = i + 1,     
             };
