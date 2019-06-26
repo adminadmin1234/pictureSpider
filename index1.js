@@ -5,8 +5,8 @@ var cheerio = require('cheerio');
 var request = require('request');
 var iconv=require('iconv-lite'); //iconv-lite模块用于解码,苦于nodejs不支持gbk解析
 //设置循环
-var i = 0;///detail24/24393.html',
-var url = "http://xiaohua.zol.com.cn/detail24/23778.html"; // 这个站点是gbk格式的
+var i = 0;// /detail27/26232.html
+var url = "http://xiaohua.zol.com.cn/detail24/26232.html"; // 这个站点是gbk格式的
 function startSpider(x) {
 	console.log('向目标站点发送请求');
     //采用http模块向服务器发起一次get请求      
